@@ -1,4 +1,4 @@
--- dropping the tables to be able to overwrite their content
+-- dropping the tables in reverse to be able to overwrite their content
 
 DROP TABLE visitors;
 DROP TABLE range_of_accesses;
@@ -103,7 +103,7 @@ CREATE TABLE tickets (
 CREATE TABLE visitors (
     visitor_id NUMBER NOT NULL,
     ticket_id NUMBER NOT NULL,
-    total_order_id NUMBER NOT NULL,
+    total_order_id NUMBER,
     name VARCHAR2(100) NOT NULL,
     surname VARCHAR2(100) NOT NULL,
     isUnderage NUMBER(1) NOT NULL,
