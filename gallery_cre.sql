@@ -108,6 +108,7 @@ CREATE TABLE visitors (
     surname VARCHAR2(100) NOT NULL,
     isUnderage NUMBER(1) NOT NULL,
     time_of_entrance TIMESTAMP NOT NULL,
+    time_of_leaving TIMESTAMP NOT NULL,
     city VARCHAR2(100),
     street VARCHAR2(100),
     house_number NUMBER,
