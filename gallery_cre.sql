@@ -12,8 +12,18 @@ DROP TABLE total_orders;
 DROP TABLE tickets;
 DROP TABLE exhibitions;
 DROP TABLE artists;
+DROP TABLE daily_visits;
 
 ----------------------------------------------------------------------
+----------------------------------------------------------------------
+-- empty table storing data about each day visitors activity
+CREATE TABLE daily_visits (
+    id NUMBER NOT NULL,
+    day DATE NOT NULL,
+    visitors_amount NUMBER NOT NULL,
+    mean_visit_time NUMBER NOT NULL
+);
+
 ----------------------------------------------------------------------
 -- creating tables and adding indexes
 
