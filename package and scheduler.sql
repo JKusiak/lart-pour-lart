@@ -1,18 +1,16 @@
 SET SERVEROUTPUT ON;
 
+-- Package for tracking a total amount of people and the time they stayed in the gallery for each consecutive day,
+-- storing the results in a daily_visits table
 CREATE OR REPLACE PACKAGE DAILY_VISITS_TRACKER_API
 IS
     -- cursor storing information about visitors from a current day (sysdate info)
     CURSOR c_visitors RETURN visitors%ROWTYPE;
     -- function calculating time a particular visitor stayed in the gallery
     FUNCTION TIME_STAYING_FUNC(visitor c_visitors%ROWTYPE) RETURN NUMBER;
-    -- procedure calculating total number of visitors from a current day and mean time they stayed in gallery,
-    -- updating the table daily_visits with the results
+    -- procedure calculating total number of visitors from a current day and mean time they stayed in gallery
     PROCEDURE DAILY_VISITS_UPDATE_PRC(o_mean_daily OUT NUMBER);
 END DAILY_VISITS_TRACKER_API;
-
-
-
 
 CREATE OR REPLACE PACKAGE BODY DAILY_VISITS_TRACKER_API
 IS
@@ -63,3 +61,27 @@ IS
         VALUES(id_seq.NEXTVAL, g_current_time, tot_visitors, o_mean_daily);
     END;
 END DAILY_VISITS_TRACKER_API;
+
+
+
+-- Scheduler job to run procedure from DAILY_VISITS_TRACKER_API each day to populate daily_visits table with results 
+
+BEGIN
+    DBMS_SCHEDULER.CREATE_JOB (
+        job_name           =>  'track_visitors',
+        job_type           =>  'STORED_PROCEDURE',
+        job_action         =>  'DAILY_VISITS_TRACKER_API.DAILY_VISITS_UPDATE_PRC',
+        repeat_interval    =>  'FREQ=DAILY; BYHOUR=23',
+        comments           =>  'Job tracking number of visitors from a given day in the table');
+END;
+
+
+
+
+
+
+
+
+
+
+
