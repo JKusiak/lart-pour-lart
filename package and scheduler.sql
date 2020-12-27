@@ -9,7 +9,7 @@ IS
     -- function calculating time a particular visitor stayed in the gallery
     FUNCTION TIME_STAYING_FUNC(visitor c_visitors%ROWTYPE) RETURN NUMBER;
     -- procedure calculating total number of visitors from a current day and mean time they stayed in gallery
-    PROCEDURE DAILY_VISITS_UPDATE_PRC(o_mean_daily OUT NUMBER);
+    PROCEDURE DAILY_VISITS_UPDATE_PRC;
 END DAILY_VISITS_TRACKER_API;
 
 CREATE OR REPLACE PACKAGE BODY DAILY_VISITS_TRACKER_API
@@ -39,10 +39,11 @@ IS
 
 
 
-    PROCEDURE DAILY_VISITS_UPDATE_PRC(o_mean_daily OUT NUMBER)
+    PROCEDURE DAILY_VISITS_UPDATE_PRC
     IS
         l_total_daily_time NUMBER := 0;
         tot_visitors NUMBER := 0;
+        l_mean_daily NUMBER := 0;
         
     BEGIN
         FOR visitor IN c_visitors
@@ -52,13 +53,13 @@ IS
         END LOOP;
         
         IF tot_visitors = 0 THEN
-            o_mean_daily := 0;
+            l_mean_daily := 0;
         ELSE
-            o_mean_daily := ROUND((l_total_daily_time / tot_visitors), 0);
+            l_mean_daily := ROUND((l_total_daily_time / tot_visitors), 0);
         END IF;
         
-        INSERT INTO daily_visits(id, day_measured, visitors_amount, mean_visit_time)
-        VALUES(id_seq.NEXTVAL, g_current_time, tot_visitors, o_mean_daily);
+        INSERT INTO daily_visits(id, day, visitors_amount, mean_visit_time)
+        VALUES(daily_visits_id_seq.NEXTVAL, g_current_time, tot_visitors, l_mean_daily);
     END;
 END DAILY_VISITS_TRACKER_API;
 
@@ -71,13 +72,22 @@ BEGIN
         job_name           =>  'track_visitors',
         job_type           =>  'STORED_PROCEDURE',
         job_action         =>  'DAILY_VISITS_TRACKER_API.DAILY_VISITS_UPDATE_PRC',
-        repeat_interval    =>  'FREQ=DAILY; BYHOUR=23',
+        start_date         =>   SYSTIMESTAMP,
+        repeat_interval    =>  'FREQ=DAILY; BYHOUR=23; BYMINUTE=35',
+        enabled            =>   TRUE,
         comments           =>  'Job tracking number of visitors from a given day in the table');
 END;
 
 
+-- sequence used in the procedure to 
+CREATE SEQUENCE daily_visits_id_seq
+    INCREMENT BY 1
+    START WITH 1;
 
-
+    
+BEGIN
+  dbms_scheduler.drop_job(job_name => 'track_visitors');
+END;
 
 
 

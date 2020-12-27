@@ -48,27 +48,33 @@ CREATE TABLE exhibitions (
 
 ----------------------------------------------------------------------
 
-CREATE TABLE exhibition_contents (
-    exhib_con_id NUMBER NOT NULL,
-    exhibition_id NUMBER NOT NULL,
-    artwork_id NUMBER NOT NULL
-);
-
-----------------------------------------------------------------------
-
-CREATE TABLE artworks (
-    artwork_id NUMBER NOT NULL,
-    artist_id NUMBER NOT NULL,
-    art_style_id NUMBER NOT NULL,
-    description_tranlsation_id NUMBER NOT NULL,
-    title VARCHAR2(100),
-    year_of_creation DATE,
+CREATE TABLE tickets (
+    ticket_id NUMBER NOT NULL,
+    has_discount NUMBER(1) NOT NULL,
     price NUMBER NOT NULL
 );
 
 ----------------------------------------------------------------------
 
+CREATE TABLE total_orders (
+    total_order_id NUMBER NOT NULL,
+    payment NUMBER NOT NULL,
+    date_of_order DATE NOT NULL,
+    approximate_delivery DATE NOT NULL
+);
+
+----------------------------------------------------------------------
+
 CREATE TABLE artwork_translations (
+    translation_id NUMBER NOT NULL,
+    text_EN VARCHAR2(4000),
+    text_PL VARCHAR2(4000),
+    text_FR VARCHAR2(4000)
+);
+
+----------------------------------------------------------------------
+
+CREATE TABLE art_style_translations (
     translation_id NUMBER NOT NULL,
     text_EN VARCHAR2(4000),
     text_PL VARCHAR2(4000),
@@ -85,11 +91,30 @@ CREATE TABLE art_styles (
 
 ----------------------------------------------------------------------
 
-CREATE TABLE art_style_translations (
-    translation_id NUMBER NOT NULL,
-    text_EN VARCHAR2(4000),
-    text_PL VARCHAR2(4000),
-    text_FR VARCHAR2(4000)
+CREATE TABLE artworks (
+    artwork_id NUMBER NOT NULL,
+    artist_id NUMBER NOT NULL,
+    art_style_id NUMBER NOT NULL,
+    description_tranlsation_id NUMBER NOT NULL,
+    title VARCHAR2(100),
+    year_of_creation DATE,
+    price NUMBER NOT NULL
+);
+
+----------------------------------------------------------------------
+
+CREATE TABLE ordered_artworks (
+    ordered_artwork_id NUMBER NOT NULL,
+    total_order_id NUMBER NOT NULL,
+    artwork_id NUMBER NOT NULL
+);
+
+----------------------------------------------------------------------
+
+CREATE TABLE exhibition_contents (
+    exhib_con_id NUMBER NOT NULL,
+    exhibition_id NUMBER NOT NULL,
+    artwork_id NUMBER NOT NULL
 );
 
 ----------------------------------------------------------------------
@@ -98,14 +123,6 @@ CREATE TABLE range_of_accesses (
     range_of_access_id NUMBER NOT NULL,
     ticket_id NUMBER NOT NULL,
     exhibition_id NUMBER NOT NULL
-);
-
-----------------------------------------------------------------------
-
-CREATE TABLE tickets (
-    ticket_id NUMBER NOT NULL,
-    has_discount NUMBER(1) NOT NULL,
-    price NUMBER NOT NULL
 );
 
 ----------------------------------------------------------------------
@@ -126,22 +143,7 @@ CREATE TABLE visitors (
     phone_number NUMBER
 );
 
-----------------------------------------------------------------------
 
-CREATE TABLE total_orders (
-    total_order_id NUMBER NOT NULL,
-    payment NUMBER NOT NULL,
-    date_of_order DATE NOT NULL,
-    approximate_delivery DATE NOT NULL
-);
-
-----------------------------------------------------------------------
-
-CREATE TABLE ordered_artworks (
-    ordered_artwork_id NUMBER NOT NULL,
-    total_order_id NUMBER NOT NULL,
-    artwork_id NUMBER NOT NULL
-);
 
 
 
