@@ -151,9 +151,6 @@ CREATE TABLE visitors (
 ----------------------------------------------------------------------
 -- adding indexes, primary keys and foreign keys to all tables
 
-CREATE UNIQUE INDEX artist_id_pk
-ON artists (artist_id);
-
 ALTER TABLE artists
 ADD (
     CONSTRAINT artist_id_pk
@@ -161,9 +158,6 @@ ADD (
 );
 
 ----------------------------------------------------------------------
-
-CREATE UNIQUE INDEX exhib_id_pk
-ON exhibitions (exhibition_id);
 
 ALTER TABLE exhibitions
 ADD (
@@ -173,9 +167,6 @@ ADD (
 
 ----------------------------------------------------------------------
 
-CREATE UNIQUE INDEX tickets_id_pk
-ON tickets (ticket_id);
-
 ALTER TABLE tickets
 ADD (
     CONSTRAINT tickets_id_pk
@@ -183,9 +174,6 @@ ADD (
 );
 
 ----------------------------------------------------------------------
-
-CREATE UNIQUE INDEX totord_id_pk
-ON total_orders(total_order_id);
 
 ALTER TABLE total_orders
 ADD (
@@ -195,9 +183,6 @@ ADD (
 
 ----------------------------------------------------------------------
 
-CREATE UNIQUE INDEX art_trans_id_pk
-ON artwork_translations (translation_id);
-
 ALTER TABLE artwork_translations
 ADD (
     CONSTRAINT art_trans_id_pk
@@ -206,9 +191,6 @@ ADD (
 
 ----------------------------------------------------------------------
 
-CREATE UNIQUE INDEX as_trans_id_pk
-ON art_style_translations (translation_id);
-
 ALTER TABLE art_style_translations
 ADD (
     CONSTRAINT as_trans_id_pk
@@ -216,9 +198,6 @@ ADD (
 );
 
 ----------------------------------------------------------------------
-
-CREATE UNIQUE INDEX art_style_id_pk
-ON art_styles (art_style_id);
 
 ALTER TABLE art_styles
 ADD (
@@ -229,10 +208,10 @@ ADD (
         REFERENCES art_style_translations
 );
 
-----------------------------------------------------------------------
+CREATE UNIQUE INDEX as_trans_id_fk_i
+ON art_styles (description_translation_id); 
 
-CREATE UNIQUE INDEX artwork_id_pk
-ON artworks (artwork_id);
+----------------------------------------------------------------------
 
 ALTER TABLE artworks
 ADD (
@@ -249,10 +228,16 @@ ADD (
         REFERENCES artwork_translations
 );
 
-----------------------------------------------------------------------
+CREATE UNIQUE INDEX artist_id_fk_i
+ON artworks (artist_id); 
 
-CREATE UNIQUE INDEX ordart_id_pk
-ON ordered_artworks(ordered_artwork_id);
+CREATE UNIQUE INDEX art_style_id_fk_i
+ON artworks (art_style_id); 
+
+CREATE UNIQUE INDEX art_trans_id_fk_i
+ON artworks (description_tranlsation_id); 
+
+----------------------------------------------------------------------
 
 ALTER TABLE ordered_artworks
 ADD (
@@ -266,10 +251,13 @@ ADD (
         REFERENCES artworks
 );
 
-----------------------------------------------------------------------
+CREATE UNIQUE INDEX totord_id_fk1_i
+ON ordered_artworks (total_order_id); 
 
-CREATE UNIQUE INDEX exhib_con_id_pk
-ON exhibition_contents (exhib_con_id);
+CREATE UNIQUE INDEX artwork_id_fk2_i
+ON ordered_artworks (artwork_id); 
+
+----------------------------------------------------------------------
 
 ALTER TABLE exhibition_contents
 ADD (
@@ -283,10 +271,10 @@ ADD (
         REFERENCES artworks
 );
 
-----------------------------------------------------------------------
+CREATE UNIQUE INDEX exhib_id_fk1_i
+ON exhibition_contents (exhibition_id); 
 
-CREATE UNIQUE INDEX roa_id_pk
-ON range_of_accesses (range_of_access_id);
+----------------------------------------------------------------------
 
 ALTER TABLE range_of_accesses
 ADD (
@@ -300,10 +288,13 @@ ADD (
         REFERENCES exhibitions
 );
 
-----------------------------------------------------------------------
+CREATE UNIQUE INDEX tickets_id_fk1_i
+ON range_of_accesses (ticket_id);
 
-CREATE UNIQUE INDEX visitor_id_pk
-ON visitors(visitor_id);
+CREATE UNIQUE INDEX exhib_id_fk2_i
+ON range_of_accesses (exhibition_id);
+
+----------------------------------------------------------------------
 
 ALTER TABLE visitors
 ADD (
@@ -316,6 +307,13 @@ ADD (
         FOREIGN KEY (total_order_id)
         REFERENCES total_orders
 );
+
+CREATE UNIQUE INDEX tickets_id_fk2_i
+ON visitors (ticket_id);
+
+CREATE UNIQUE INDEX totord_id_fk2_i
+ON visitors (total_order_id);
+
 
 
 
