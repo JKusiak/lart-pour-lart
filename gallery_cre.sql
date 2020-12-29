@@ -138,9 +138,9 @@ CREATE TABLE visitors (
     time_of_leaving TIMESTAMP NOT NULL,
     city VARCHAR2(100),
     street VARCHAR2(100),
-    house_number NUMBER,
+    house_number VARCHAR2(10),
     zip_code VARCHAR2(10),
-    phone_number NUMBER
+    phone_number VARCHAR2(20)
 );
 
 

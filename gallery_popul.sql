@@ -2151,9 +2151,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('14-10-2020 14:15:10', 'dd-mm-yyyy hh24:mi:ss'),
     'Warsaw',
     'Malarska',
-    48,
+    '48',
     '00-009',
-    790880927
+    '790880927'
 );
 
 INSERT INTO visitors VALUES (
@@ -2199,9 +2199,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('16-10-2020 17:21:10', 'dd-mm-yyyy hh24:mi:ss'),
     'Cracow',
     'Konstytucyjna',
-    128,
+    '128',
     '30-008',
-    507775285
+    '507775285'
 );
 
 INSERT INTO visitors VALUES (
@@ -2343,9 +2343,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('23-10-2020 14:55:51', 'dd-mm-yyyy hh24:mi:ss'),
     'Warsaw',
     'Pi³sudskiego',
-    89,
+    '89',
     '00-163',
-    668372680
+    '668372680'
 );
 
 INSERT INTO visitors VALUES (
@@ -2423,9 +2423,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('26-10-2020 14:15:52', 'dd-mm-yyyy hh24:mi:ss'),
     '£ódŸ',
     'Narutowicza',
-    51,
+    '51',
     '92-101',
-    880900913
+    '880900913'
 );
 
 INSERT INTO visitors VALUES (
@@ -2439,9 +2439,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('27-10-2020 19:55:31', 'dd-mm-yyyy hh24:mi:ss'),
     'Warszawa',
     'Pilska',
-    90,
+    '90',
     '00-063',
-    543099341
+    '543099341'
 );
 
 INSERT INTO visitors VALUES (
@@ -2471,9 +2471,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('28-10-2020 17:12:23', 'dd-mm-yyyy hh24:mi:ss'),
     'Gdañsk',
     'Portowa',
-    24,
+    '24',
     '80-108',
-    599245519
+    '599245519'
 );
 
 INSERT INTO visitors VALUES (
@@ -2631,9 +2631,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('05-11-2020 12:10:15', 'dd-mm-yyyy hh24:mi:ss'),
     'Koluszki',
     '£ódzka',
-    205,
+    '205',
     '95-040',
-    703228774
+    '703228774'
 );
 
 INSERT INTO visitors VALUES (
@@ -2679,9 +2679,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('14-11-2020 11:05:09', 'dd-mm-yyyy hh24:mi:ss'),
     'Warszawa',
     'Morska',
-    59,
+    '59',
     '00-027',
-    555099509
+    '555099509'
 );
 
 INSERT INTO visitors VALUES (
@@ -2711,9 +2711,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('23-11-2020 15:57:41', 'dd-mm-yyyy hh24:mi:ss'),
     'Zakopane',
     'Zakopianka',
-    67,
+    '67',
     '34-500',
-    533678675
+    '533678675'
 );
 
 INSERT INTO visitors VALUES (
@@ -2807,9 +2807,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('10-12-2020 12:01:33', 'dd-mm-yyyy hh24:mi:ss'),
     'Zielona Góra',
     'Zielona',
-    16,
+    '16',
     '65-047',
-    801107703
+    '801107703'
 );
 
 INSERT INTO visitors VALUES (
@@ -2887,9 +2887,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('15-12-2020 16:11:07', 'dd-mm-yyyy hh24:mi:ss'),
     'London',
     'Abbey Road',
-    46,
+    '46',
     'EC4Y8AX',
-    356835561
+    '356835561'
 );
 
 INSERT INTO visitors VALUES (
@@ -3015,9 +3015,9 @@ INSERT INTO visitors VALUES (
     TO_DATE('29-12-2020 19:10:12', 'dd-mm-yyyy hh24:mi:ss'),
     'Stargard Szczeciñski',
     'Przemys³owa',
-    35,
+    '35',
     '70-100',
-    509112980
+    '509112980'
 );
 
 INSERT INTO visitors VALUES (
