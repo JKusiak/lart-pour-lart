@@ -12,7 +12,8 @@ BEGIN
     SELECT COUNT(DISTINCT ticket_id), COUNT(range_of_access_id)
     INTO l_tickets, l_access_instance
     FROM range_of_accesses
-    WHERE (i_first_exhib = exhibition_id OR i_second_exhibition = exhibition_id) OR (i_first_exhib IS NULL AND i_second_exhibition IS NULL);
+    WHERE ( i_first_exhib = exhibition_id OR i_second_exhibition = exhibition_id) 
+            OR (i_first_exhib IS NULL AND i_second_exhibition IS NULL);
     
     l_repeated_tickets := l_access_instance - l_tickets;
     RETURN l_repeated_tickets;
@@ -64,14 +65,6 @@ BEGIN
     DISPLAY_EXHIB_VISITORS_INFO_PRC(2, 3);
 END;
 
-
-CREATE SEQUENCE total_order_id_seq
-    INCREMENT BY 1
-    START WITH 13;
-
-CREATE SEQUENCE ordered_artworks_id_seq
-    INCREMENT BY 1
-    START WITH 19;Procedures;
 
 
 
