@@ -228,12 +228,6 @@ ADD (
         REFERENCES artwork_translations
 );
 
-CREATE UNIQUE INDEX artist_id_fk_i
-ON artworks (artist_id); 
-
-CREATE UNIQUE INDEX art_style_id_fk_i
-ON artworks (art_style_id); 
-
 CREATE UNIQUE INDEX art_trans_id_fk_i
 ON artworks (description_tranlsation_id); 
 
@@ -251,12 +245,6 @@ ADD (
         REFERENCES artworks
 );
 
-CREATE UNIQUE INDEX totord_id_fk1_i
-ON ordered_artworks (total_order_id); 
-
-CREATE UNIQUE INDEX artwork_id_fk2_i
-ON ordered_artworks (artwork_id); 
-
 ----------------------------------------------------------------------
 
 ALTER TABLE exhibition_contents
@@ -271,9 +259,6 @@ ADD (
         REFERENCES artworks
 );
 
-CREATE UNIQUE INDEX exhib_id_fk1_i
-ON exhibition_contents (exhibition_id); 
-
 ----------------------------------------------------------------------
 
 ALTER TABLE range_of_accesses
@@ -287,12 +272,6 @@ ADD (
         FOREIGN KEY (exhibition_id)
         REFERENCES exhibitions
 );
-
-CREATE UNIQUE INDEX tickets_id_fk1_i
-ON range_of_accesses (ticket_id);
-
-CREATE UNIQUE INDEX exhib_id_fk2_i
-ON range_of_accesses (exhibition_id);
 
 ----------------------------------------------------------------------
 
