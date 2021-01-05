@@ -68,7 +68,7 @@ IS
         
     BEGIN
         IF i_is_underage !=0 
-        OR i_is_underage !=1 THEN
+        AND i_is_underage !=1 THEN
             RAISE e_is_underage_wrong_value;
         END IF;
         
